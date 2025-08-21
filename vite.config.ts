@@ -5,7 +5,7 @@ import { defineConfig } from "vite";
 export default defineConfig({
   plugins: [react()],
   // Para GitHub Pages (Project Pages): base = "/<repo>/"
-  base: "moliveirateixeira",
+  base: "/portfolio-react/",
   build: {
     outDir: "dist",     // padrão do Vite (explícito aqui)
     assetsDir: "assets",// subpasta para assets
