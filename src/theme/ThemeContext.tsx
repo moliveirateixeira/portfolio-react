@@ -20,7 +20,7 @@ function getInitialTheme(): Theme {
     try {
         const storedTheme = localStorage.getItem("theme") as Theme | null;
         if( storedTheme === "light" || storedTheme === "dark") return storedTheme; 
-    } catch (error) {
+    } catch {
         // Se falhar ao ler localStorage, ignora
     }
     if (typeof window !== "undefined" && window.matchMedia) {
@@ -42,7 +42,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
             body.classList.remove("light");
     } try{
             localStorage.setItem("theme", theme);
-    } catch (error) {
+    } catch {
     }
 }, [theme]);
 
@@ -54,7 +54,7 @@ useEffect(() => {
         const saved = (() => {
             try {
                 return localStorage.getItem("theme") as Theme | null;
-            } catch (error) {
+            } catch {
                 return null;
             }
         })();

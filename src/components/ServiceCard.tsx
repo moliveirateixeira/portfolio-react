@@ -1,7 +1,8 @@
 // src/components/ServiceCard.tsx
-import React from "react";
-import type { Service, ServiceKey } from "../data/services";
 import { DevicesIcon, HardDrivesIcon, InfinityIcon } from "@phosphor-icons/react";
+import React from "react";
+
+import type { Service, ServiceKey } from "../data/services";
 
 // Mapa de ícones por chave (Phosphor em novo padrão *Icon)
 const ICONS: Record<ServiceKey, React.ComponentType<React.SVGProps<SVGSVGElement>>> = {

@@ -1,6 +1,6 @@
 
-import { services } from "../data/services";
 import { ServiceCard } from "../components/ServiceCard";
+import { services } from "../data/services";
 
 /**
  * Seção "Meus serviços" — mantém estrutura/classe do HTML:

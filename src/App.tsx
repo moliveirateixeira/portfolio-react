@@ -1,10 +1,11 @@
 // src/App.tsx
 import React from "react";
-import { ThemeProvider } from "./theme/ThemeContext";
-import Projects from "./sections/Projects";
-import ThemeToggle from "./components/ThemeToggle";
+
 import Intro from "./components/Intro";
+import ThemeToggle from "./components/ThemeToggle";
+import Projects from "./sections/Projects";
 import Services from "./sections/Services";
+import { ThemeProvider } from "./theme/ThemeContext";
 
 
 function App(): React.JSX.Element {

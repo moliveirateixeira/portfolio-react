@@ -1,4 +1,4 @@
-// eslint.config.js (Flat Config)
+// eslint.config.js
 import js from "@eslint/js";
 import globals from "globals";
 import tseslint from "typescript-eslint";
@@ -7,70 +7,61 @@ import reactHooks from "eslint-plugin-react-hooks";
 import importPlugin from "eslint-plugin-import";
 import prettier from "eslint-config-prettier";
 
+// Limita todas as configs type-checked para TS/TSX e injeta parserOptions.project
+const tsTypeChecked = tseslint.configs.recommendedTypeChecked.map((cfg) => ({
+  ...cfg,
+  files: ["**/*.{ts,tsx}"],
+  languageOptions: {
+    ...(cfg.languageOptions ?? {}),
+    parserOptions: {
+      ...(cfg.languageOptions?.parserOptions ?? {}),
+      project: ["./tsconfig.json"],
+      tsconfigRootDir: import.meta.dirname,
+    },
+    globals: { ...globals.browser, ...globals.node },
+  },
+}));
+
 export default [
-  // 1) Ignorar pastas de build e deps
+  // Ignorar build/deps
   { ignores: ["dist", "build", "node_modules"] },
 
-  // 2) Regras base JS
-  js.configs.recommended,
+  // Regras JS aplicadas APENAS a arquivos .js/.cjs/.mjs (não encostam em TS)
+  { files: ["**/*.{js,cjs,mjs}"], ...js.configs.recommended },
 
-  // 3) Regras TS com type-check (requer tsconfig.json)
-  ...tseslint.configs.recommendedTypeChecked,
+  // Regras TS com type-check, agora ESCOPO TS/TSX
+  ...tsTypeChecked,
 
-  // 4) Camada do projeto (linguagem, plugins, regras)
+  // Camada do projeto para TS/TSX: React, Hooks, import/order, ajustes TS
   {
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.json"],     // habilita type-aware rules
-        tsconfigRootDir: import.meta.dirname,
-        ecmaVersion: "latest",
-        sourceType: "module",
-      },
-      globals: {
-        ...globals.browser,
-        ...globals.node,
-      },
-    },
-    plugins: {
-      react,
-      "react-hooks": reactHooks,
-      import: importPlugin,
-    },
-    settings: {
-      react: { version: "detect" }, // detecta versão do React
-    },
+    files: ["**/*.{ts,tsx}"],
+    plugins: { react, "react-hooks": reactHooks, import: importPlugin },
+    settings: { react: { version: "detect" } },
     rules: {
       // React
-      "react/react-in-jsx-scope": "off", // React 17+
+      "react/react-in-jsx-scope": "off",
       "react/jsx-uses-react": "off",
-
       // Hooks
       "react-hooks/rules-of-hooks": "error",
       "react-hooks/exhaustive-deps": "warn",
-
-      // Import order para difs limpos
+      // Import order
       "import/order": [
         "warn",
         {
           "newlines-between": "always",
           "alphabetize": { order: "asc", caseInsensitive: true },
-          "groups": [
-            ["builtin", "external"],
-            ["internal"],
-            ["parent", "sibling", "index"]
-          ]
-        }
+          "groups": [["builtin", "external"], ["internal"], ["parent", "sibling", "index"]],
+        },
       ],
-
-      // Pequenos ajustes TS
+      // TS
       "@typescript-eslint/no-unused-vars": [
         "warn",
-        { argsIgnorePattern: "^_", varsIgnorePattern: "^_" }
+        { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
       ],
       "@typescript-eslint/consistent-type-imports": ["warn", { fixStyle: "inline-type-imports" }],
     },
   },
 
-  // 5) Desativa regras que conflitam com o Prettier
+  // Prettier por último (ok aplicar globalmente)
   prettier,
 ];
