@@ -1,8 +1,15 @@
-import react from '@vitejs/plugin-react'
-import { defineConfig } from 'vite'
+// vite.config.ts
+import react from "@vitejs/plugin-react";
+import { defineConfig } from "vite";
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: "/REPO_NAME/", // Substitua REPO_NAME pelo nome do seu repositório
-})
+  // Para GitHub Pages (Project Pages): base = "/<repo>/"
+  base: "moliveirateixeira",
+  build: {
+    outDir: "dist",     // padrão do Vite (explícito aqui)
+    assetsDir: "assets",// subpasta para assets
+    emptyOutDir: true,  // limpa dist/ antes de cada build
+    sourcemap: false    // true se quiser depurar no Pages (opcional)
+  },
+});
