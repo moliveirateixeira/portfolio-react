@@ -1,5 +1,4 @@
-// src/sections/Services.tsx
-import React from "react";
+
 import { services } from "../data/services";
 import { ServiceCard } from "../components/ServiceCard";
 

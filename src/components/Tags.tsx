@@ -1,5 +1,3 @@
-// src/components/Tags.tsx
-import React from "react";
 import { tags } from "../data/tags";
 
 /**

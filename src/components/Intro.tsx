@@ -1,5 +1,3 @@
-// src/components/Intro.tsx
-import React from "react";
 import Tags from "./Tags";
 import { asset } from "../lib/asset";
 
