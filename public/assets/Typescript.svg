@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <!-- Quadrado com bordas arredondadas -->
+  <rect x="4" y="4" width="120" height="120" rx="16"
+        fill="none" stroke="#ffffff" stroke-width="8"/>
+  
+  <!-- Texto Ts centralizado -->
+  <text x="50%" y="50%" fill="#ffffff"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="72" font-weight="bold"
+        text-anchor="middle" dominant-baseline="middle"
+        letter-spacing="-6">
+    Ts
+  </text>
+</svg>

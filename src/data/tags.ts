@@ -11,5 +11,6 @@ export const tags: TagItem[] = [
   { label: "CSS",        iconSrc: asset("/assets/CSS.svg") },
   { label: "JavaScript", iconSrc: asset("/assets/JavaScript.svg") },
   { label: "React",      iconSrc: asset("/assets/React.svg") },
-  { label: "Node.js",    iconSrc: asset("/assets/Node.js.svg") }
+  { label: "Node.js",    iconSrc: asset("/assets/Node.js.svg") },
+  { label: "Typescript",    iconSrc: asset("/assets/Typescript.svg") }
 ];
