@@ -1,6 +1,15 @@
 
 import type { Project } from "../data/projects";
 
+export type ProjectCardProps = {
+  id: string;
+  title: string;
+  desc: string;
+  imageSrc: string;
+  imageAlt?: string;
+  href?: string;
+};
+
 /**
  * Card de projeto (somente apresentação)
  * - Mantém classes do HTML original para reaproveitar o CSS existente
@@ -9,7 +18,7 @@ import type { Project } from "../data/projects";
 export function ProjectCard({ title, desc, imageSrc, imageAlt, href }: Project) {
   const CardContent = (
     <>
-      <img className="project-card__thumb" src={imageSrc} alt={imageAlt} />
+      <img className="project-card__thumb" src={imageSrc} alt={imageAlt} loading="lazy" />
       <div className="project-card__body">
         <h3 className="project-card__title">{title}</h3>
         <p className="project-card__desc">{desc}</p>

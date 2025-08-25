@@ -1,5 +1,6 @@
 import { asset } from "../lib/asset";// Tipo para um projeto
 export type Project = {
+  id: string;
   title: string;
   desc: string;
   imageSrc: string;
@@ -10,6 +11,7 @@ export type Project = {
 // Array de projetos — espelha o seu index.html (seção PROJETOS)
 export const projects: Project[] = [
   {
+    id: "devlinks",
     title: "Devlinks",
     desc: "Agregador de Links(Temos o acesso aos códigos dos projetos por aqui).",
     imageSrc: asset("/assets/Thumbnail_Project-01.png"),

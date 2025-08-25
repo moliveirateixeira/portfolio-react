@@ -19,7 +19,8 @@ export default function Projects() {
         <div className="grid projects__grid">
           {projects.map((p) => (
             <ProjectCard
-              key={p.title}
+              id={p.id}
+              key={p.id}
               title={p.title}
               desc={p.desc}
               imageSrc={p.imageSrc}
